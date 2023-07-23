@@ -5,7 +5,7 @@ import { Parallax, ParallaxLayer, IParallax } from "@react-spring/parallax";
 import Image from "next/image";
 import React, { useRef } from "react";
 import { Navbar } from "./components/Navbar";
-import { CardTools } from "./components/Card";
+import { CardHeaderProject, CardTools } from "./components/Card";
 
 export default function Home() {
   const [springs, api] = useSpring(() => ({
@@ -36,7 +36,7 @@ export default function Home() {
         <ParallaxLayer offset={0} speed={0.2} className="z-10">
           <Image src={"/s1-v0.png"} alt="parallax-1" fill objectFit="cover" />
         </ParallaxLayer>
-        <ParallaxLayer offset={0.1} speed={0.8} className="top-1 z-50">
+        <ParallaxLayer offset={0.1} speed={0.8} className="z-50">
           <Navbar />
         </ParallaxLayer>
         <ParallaxLayer offset={0.1} speed={1} className="mt-16 z-10">
@@ -108,10 +108,11 @@ export default function Home() {
           offset={0.9}
           speed={0.9}
           className="z-40 flex mt-32 px-36 "
+          id="about"
         >
           <div className="w-[50%] mt-10  flex flex-col justify-center gap-10 ">
             <div className="relative rounded-lg  text-3xl font-medium bg-btn-navbar flex h-16 w-72 justify-center items-center border-white border-2 border-opacity-25">
-              <p id="about">Hi I am Irwan</p>
+              <p>Hi I am Irwan</p>
               <Image
                 src={"/hand.png"}
                 alt="section1 image 1"
@@ -222,6 +223,48 @@ export default function Home() {
               imageResource="/figma.png"
               bg="bg-gradient-to-tr from-violet-700 to-red-800"
               label="Figma UI/UX Design"
+            />
+          </div>
+        </ParallaxLayer>
+        <ParallaxLayer offset={1.9} speed={2.1} className="mt-[700px] px-36 ">
+          <Image src={"/s4-v1.png"} alt="parallax-1" fill objectFit="cover" />
+        </ParallaxLayer>
+        <ParallaxLayer offset={1.9} speed={2.3} className=" mt-[700px] px-36 ">
+          <Image src={"/s4-v2.png"} alt="parallax-1" fill objectFit="cover" />
+        </ParallaxLayer>
+        <ParallaxLayer offset={1.9} speed={2} className="mt-[650px] px-36 ">
+          <Image src={"/s4-v3.png"} alt="parallax-1" fill objectFit="cover" />
+        </ParallaxLayer>
+        <ParallaxLayer
+          offset={1.9}
+          speed={1.5}
+          className="mt-[600px] flex px-36 gap-16"
+          id="project"
+        >
+          <div className="w-[30%] mt-10  flex flex-col justify-center gap-10 ">
+            <div>
+              <p>Project List</p>
+            </div>
+            <div className="text-4xl text-white leading-relaxed font-semibold">
+              <p>Meet my latest Project</p>
+            </div>
+            <div>
+              <p className="leading-8">
+                Explore my latest projects with responsive, user friendly,
+                creative and innovative web experiences. Lets journey together!
+              </p>
+            </div>
+          </div>
+          <div className="w-[70%] grid grid-cols-2 items-center justify-end">
+            <CardHeaderProject
+              goTo="https://github.com/IrwanFicoFar"
+              imageResource="/github.png"
+              description="Find all the necessary projects that I have uploaded to GitHub."
+            />
+            <CardHeaderProject
+              goTo="https://www.youtube.com/channel/UC9uy_umt8ZsMjjj2N2vQYtA"
+              imageResource="/youtube.png"
+              description="Explore more about the latest tech stack tutorials on Youtube."
             />
           </div>
         </ParallaxLayer>
