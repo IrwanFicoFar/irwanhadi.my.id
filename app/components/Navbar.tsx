@@ -7,7 +7,7 @@ export const Navbar = () => {
     <div className="flex justify-end items-center w-full gap-10 px-36 font-medium text-purple-500">
       <ButtonNav linkTo="#" label="Home" />
       <ButtonNav linkTo="#about" label="About me" />
-      <ButtonNav linkTo="#" label="Tools" />
+      <ButtonNav linkTo="#tools" label="Tools" />
       <ButtonNav linkTo="#" label="Project" />
       <ButtonNav linkTo="#" label="Contact" />
       <ButtonNav linkTo="#" label="Vlog" />
