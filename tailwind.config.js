@@ -16,6 +16,9 @@ module.exports = {
         section1:
           "linear-gradient(180deg, #3E1AD2 18.35%, #7142C7 65.81%, #9152FB 100%);",
       },
+      backgroundColor: {
+        bgDefault: "#1E1F43",
+      },
     },
   },
   plugins: [],
