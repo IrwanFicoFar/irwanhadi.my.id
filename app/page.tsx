@@ -5,7 +5,8 @@ import { Parallax, ParallaxLayer, IParallax } from "@react-spring/parallax";
 import Image from "next/image";
 import React, { useRef } from "react";
 import { Navbar } from "./components/Navbar";
-import { CardHeaderProject, CardTools } from "./components/Card";
+import { CardHeaderProject, CardProject, CardTools } from "./components/Card";
+import { ButtonNav } from "./components/Button";
 
 export default function Home() {
   const [springs, api] = useSpring(() => ({
@@ -105,8 +106,8 @@ export default function Home() {
           className="z-20 bg-bgDefault mt-52 h-[1048px]"
         ></ParallaxLayer>
         <ParallaxLayer
-          offset={0.9}
-          speed={0.9}
+          offset={0.8}
+          speed={0.7}
           className="z-40 flex mt-32 px-36 "
           id="about"
         >
@@ -239,7 +240,6 @@ export default function Home() {
           offset={1.9}
           speed={1.5}
           className="mt-[600px] flex px-36 gap-16"
-          id="project"
         >
           <div className="w-[30%] mt-10  flex flex-col justify-center gap-10 ">
             <div>
@@ -265,6 +265,42 @@ export default function Home() {
               goTo="https://www.youtube.com/channel/UC9uy_umt8ZsMjjj2N2vQYtA"
               imageResource="/youtube.png"
               description="Explore more about the latest tech stack tutorials on Youtube."
+            />
+          </div>
+        </ParallaxLayer>
+        <ParallaxLayer
+          offset={2}
+          speed={1.3}
+          className="flex justify-center"
+          id="project"
+        >
+          <ButtonNav label="More Project" linkTo="/project" />
+        </ParallaxLayer>
+        <ParallaxLayer offset={2.3} speed={1.7} className="px-56">
+          <div className="grid grid-cols-3 gap-16">
+            <CardProject
+              goTo="https://www.youtube.com/channel/UC9uy_umt8ZsMjjj2N2vQYtA"
+              imageResource="/education.png"
+              description="Education Hub is a web platform used to facilitate prospective students in obtaining detailed
+              information about the schools they are interested in or finding the right school for them."
+              cover="/education.png"
+              title="Education-Hub"
+            />
+            <CardProject
+              goTo="https://www.youtube.com/channel/UC9uy_umt8ZsMjjj2N2vQYtA"
+              imageResource="/event.png"
+              description="designed for creating and managing
+              events. Users can create their events directly on this platform. Additionally, can explore various other ossibilities events by accessing on the main page."
+              cover="/event.png"
+              title="Event Planner App"
+            />
+            <CardProject
+              goTo="https://www.youtube.com/channel/UC9uy_umt8ZsMjjj2N2vQYtA"
+              imageResource="/pokemon.png"
+              description="Pokemon App is a platform that showcases a comprehensive list of Pokemon. Users can obtain
+              detailed information about each Pokemon by simply clicking on its respective image."
+              cover="/pokemon.png"
+              title="Catch Pokemon App"
             />
           </div>
         </ParallaxLayer>

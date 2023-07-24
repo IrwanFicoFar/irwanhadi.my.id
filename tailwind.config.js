@@ -19,9 +19,16 @@ module.exports = {
           "radial-gradient(165.95% 184.69% at 6.15% -14.24%, rgba(81, 176, 217, 0.60) 0%, rgba(60, 36, 136, 0.72) 56.77%);",
         projectHeaderBack:
           "linear-gradient(315deg, rgba(114, 26, 98, 0.80) 0%, rgba(41, 34, 86, 0.80) 56.77%);",
+        projectCard:
+          "radial-gradient(165.95% 184.69% at 6.15% -14.24%, rgba(35, 142, 189, 0.52) 0%, rgba(216, 212, 229, 0.54) 48.73%, rgba(60, 36, 136, 0.53) 92.28%);",
+        projectCardBack:
+          "background: linear-gradient(315deg, #17A92E 0%, #29186C 79.71%);",
       },
       backgroundColor: {
         bgDefault: "#1E1F43",
+      },
+      rotate: {
+        100: "100deg",
       },
     },
   },
