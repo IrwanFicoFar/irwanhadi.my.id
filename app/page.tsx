@@ -5,8 +5,15 @@ import { Parallax, ParallaxLayer, IParallax } from "@react-spring/parallax";
 import Image from "next/image";
 import React, { useRef } from "react";
 import { Navbar } from "./components/Navbar";
-import { CardHeaderProject, CardProject, CardTools } from "./components/Card";
+import {
+  CardHeaderProject,
+  CardProject,
+  CardReview,
+  CardService,
+  CardTools,
+} from "./components/Card";
 import { ButtonNav } from "./components/Button";
+import Link from "next/link";
 
 export default function Home() {
   const [springs, api] = useSpring(() => ({
@@ -85,12 +92,7 @@ export default function Home() {
           </div>
         </ParallaxLayer>
         <ParallaxLayer offset={0.4} speed={0.7} className="mt-28 z-20">
-          <Image
-            src={"/s1-v2.png"}
-            alt="parallax-2"
-            width={2000}
-            height={900}
-          />
+          <Image src={"/s1-v2.png"} alt="parallax-2" fill objectFit="cover" />
         </ParallaxLayer>
         <ParallaxLayer offset={0.6} speed={0.8} className="mt-28 z-30">
           <Image
@@ -270,13 +272,17 @@ export default function Home() {
         </ParallaxLayer>
         <ParallaxLayer
           offset={2}
-          speed={1.3}
+          speed={1.2}
           className="flex justify-center"
           id="project"
         >
-          <ButtonNav label="More Project" linkTo="/project" />
+          <ButtonNav
+            addClass="text-3xl"
+            label="More Project"
+            linkTo="https://github.com/IrwanFicoFar"
+          />
         </ParallaxLayer>
-        <ParallaxLayer offset={2.3} speed={1.7} className="px-56">
+        <ParallaxLayer offset={2.4} speed={1.7} className="px-56">
           <div className="grid grid-cols-3 gap-16">
             <CardProject
               goTo="https://www.youtube.com/channel/UC9uy_umt8ZsMjjj2N2vQYtA"
@@ -302,6 +308,114 @@ export default function Home() {
               cover="/pokemon.png"
               title="Catch Pokemon App"
             />
+          </div>
+        </ParallaxLayer>
+        <ParallaxLayer offset={2.9} speed={1.2} className="mt-24 px-36">
+          <div className="text-4xl text-white leading-relaxed font-semibold text-center">
+            <p>What They Says</p>
+          </div>
+        </ParallaxLayer>
+        <ParallaxLayer
+          offset={2.9}
+          speed={1.8}
+          className="mt-[500px] px-36 z-20"
+        >
+          <div className="grid grid-cols-3 gap-24">
+            <CardReview
+              imageAvatar="/avatar1.png"
+              name="Yunisara Aminah"
+              role="Backend Education-Hub "
+              review="“Irwan has one of my team good collaboration with him. very open minded to discuss about project.“"
+            />
+            <CardReview
+              imageAvatar="/avatar2.png"
+              name="Yusuf Assydqi"
+              role="Frontend Rule AltaBookBridge"
+              review="“Very Excited to collaboration with Irwan that man has always motivated person and ambition. “"
+            />
+            <CardReview
+              imageAvatar="/avatar3.png"
+              name="Hisnun"
+              role="Headmaster MI NW Jerua"
+              review="“Thanks to Irwan.  build awesome and function website for school. it very helpful for us. “"
+            />
+          </div>
+        </ParallaxLayer>
+        <ParallaxLayer
+          offset={2.9}
+          speed={1.5}
+          className="mt-[400px] flex justify-center z-10"
+        >
+          <Image src={"/s5-v01.png"} alt="parallax-2" fill objectFit="cover" />
+        </ParallaxLayer>
+        <ParallaxLayer offset={2.9} speed={1.6} className="mt-[800px] z-10">
+          <Image src={"/s5-v02.png"} alt="parallax-2" fill objectFit="cover" />
+        </ParallaxLayer>
+        <ParallaxLayer offset={2.9} speed={1.5} className="mt-[1000px] z-10">
+          <Image src={"/s5-v03.png"} alt="parallax-2" fill objectFit="cover" />
+        </ParallaxLayer>
+        <ParallaxLayer offset={2.9} speed={1.4} className="mt-[1100px] z-10">
+          <Image src={"/s5-v04.png"} alt="parallax-2" fill objectFit="cover" />
+        </ParallaxLayer>
+        <ParallaxLayer offset={2.9} speed={1.3} className="mt-[1300px] z-10">
+          <Image src={"/s5-v05.png"} alt="parallax-2" fill objectFit="cover" />
+        </ParallaxLayer>
+        <ParallaxLayer offset={3} speed={1.5} className="mt-[400px] z-10">
+          <Image
+            src={"/footer-vector.png"}
+            alt="footer"
+            fill
+            objectFit="cover"
+          />
+        </ParallaxLayer>
+        <ParallaxLayer offset={2.9} speed={1.3} className="mt-[800px] z-10">
+          <div className="text-4xl text-white leading-relaxed font-semibold text-center">
+            <p>What can I do for You ?</p>
+          </div>
+        </ParallaxLayer>
+        <ParallaxLayer offset={2.9} speed={1.1} className="mt-[850px] z-10">
+          <div className="flex justify-center gap-20 mx-auto">
+            <CardService
+              title="🌐 Frontend"
+              description="I'll turn your cool designs into a beautiful and responsive
+            website with react and its infrastruktur for both desktop and mobile. Let's team up and make your
+            web dreams a reality! 🌟"
+            />
+            <CardService
+              title="🎨 IU Design"
+              description="With Figma's power, I'll design stunning interfaces and seamless interactions, bringing your website to life. Let's create an exceptional user experience together! 🚀"
+            />
+          </div>
+        </ParallaxLayer>
+        <ParallaxLayer
+          offset={2.9}
+          speed={1}
+          className="mt-[1200px]  flex justify-center z-10"
+        >
+          <div className="w-[50%] flex flex-col items-center gap-10">
+            <p className="text-4xl text-white font-semibold text-center">
+              Have a Project to Build ?
+            </p>
+            <p>let’s collaborate, I’ll help you with my best</p>
+            <Link
+              href={"https://wa.me/083807106747"}
+              target="_blank"
+              className="relative rounded-lg  text-3xl font-medium bg-btn-navbar flex gap-5 h-16 w-72 justify-center items-center border-white border-2 border-opacity-25 hover:scale-105 duration-500 ease-in-out"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="40"
+                height="40"
+                viewBox="0 0 28 28"
+                fill="none"
+              >
+                <path
+                  d="M2.67962 3.5426L4.51512 1.70711C4.90564 1.31658 5.5388 1.31658 5.92933 1.70711L10.7373 6.51512C11.1279 6.90564 11.1279 7.53881 10.7373 7.92933L8.75605 9.91062C8.50361 10.1631 8.44102 10.5487 8.60068 10.868C10.4466 14.5599 13.4401 17.5534 17.132 19.3993C17.4513 19.559 17.8369 19.4964 18.0894 19.244L20.0707 17.2627C20.4612 16.8721 21.0944 16.8721 21.4849 17.2627L26.2929 22.0707C26.6834 22.4612 26.6834 23.0944 26.2929 23.4849L24.4574 25.3204C22.346 27.4317 19.0035 27.6693 16.6148 25.8777L10.9619 21.6381C9.21838 20.3304 7.66955 18.7816 6.3619 17.0381L2.12226 11.3852C0.330722 8.99652 0.568272 5.65395 2.67962 3.5426Z"
+                  stroke="white"
+                />
+              </svg>
+              <p>Contact me</p>
+            </Link>
           </div>
         </ParallaxLayer>
       </Parallax>

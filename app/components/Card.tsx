@@ -154,3 +154,49 @@ export const CardProject = ({
     </div>
   );
 };
+
+export const CardReview = ({
+  imageAvatar,
+  name,
+  role,
+  review,
+}: {
+  imageAvatar: string;
+  name: string;
+  role: string;
+  review: string;
+}) => {
+  return (
+    <div className="bg-reviewCard p-7 border-2 border-white border-opacity-25 flex flex-col gap-8 rounded-3xl hover:scale-105 duration-500 ease-in-out hover:shadow-2xl hover:shadow-blue-800/40 ">
+      <div className="">
+        <Image src={imageAvatar} width={50} height={50} alt="avatar image" />
+        <div className="mt-3">
+          <p className="font-medium">{name}</p>
+          <p>{role}</p>
+        </div>
+      </div>
+      <div>
+        <p>{review}</p>
+      </div>
+    </div>
+  );
+};
+
+export const CardService = ({
+  title,
+  description,
+}: {
+  title: string;
+  description: string;
+}) => {
+  return (
+    <div className="w-[25%] bg-gradient-to-br backdrop-blur-sm from-transparent via-gray-50 via-40% to-transparent p-10 flex flex-col gap-5 rounded-3xl ring ring-gray-50 ring-offset-1 ring-opacity-20 hover:scale-105 duration-500 ease-in-out">
+      <p className="text-transparent bg-clip-text bg-gradient-to-br from-sky-500 to-purple-500 text-3xl font-semibold">
+        {title}
+      </p>
+      <p className="text-transparent bg-clip-text bg-gradient-to-bl from-sky-800 to-purple-500 font-medium">
+        {description}
+      </p>
+    </div>
+  );
+};
