@@ -14,7 +14,9 @@ export const CardTools = ({
   label: string;
 }) => {
   return (
-    <div className={`${bg} rounded-3xl p-7`}>
+    <div
+      className={`${bg} rounded-3xl p-7 hover:scale-110 duration-500 hover:shadow-2xl hover:shadow-blue-800/70`}
+    >
       <div className="h-44 flex items-center justify-center">
         <Image
           src={imageResource}

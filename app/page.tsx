@@ -14,6 +14,7 @@ import {
 } from "./components/Card";
 import { ButtonNav } from "./components/Button";
 import Link from "next/link";
+import { Footer } from "./components/Footer";
 
 export default function Home() {
   const [springs, api] = useSpring(() => ({
@@ -32,7 +33,6 @@ export default function Home() {
   };
 
   const parallax = useRef<IParallax>(null!);
-
   return (
     <main className="min-h-screen">
       <Parallax
@@ -276,11 +276,13 @@ export default function Home() {
           className="flex justify-center"
           id="project"
         >
-          <ButtonNav
-            addClass="text-3xl"
-            label="More Project"
-            linkTo="https://github.com/IrwanFicoFar"
-          />
+          <Link
+            href={"https://github.com/IrwanFicoFar"}
+            target="_blank"
+            className="relative rounded-3xl  text-3xl font-medium bg-btn-navbar flex gap-5 h-16 w-72 justify-center items-center border-white border-2 border-opacity-25 hover:scale-105 duration-500 ease-in-out"
+          >
+            <p>More project</p>
+          </Link>
         </ParallaxLayer>
         <ParallaxLayer offset={2.4} speed={1.7} className="px-56">
           <div className="grid grid-cols-3 gap-16">
@@ -322,19 +324,19 @@ export default function Home() {
         >
           <div className="grid grid-cols-3 gap-24">
             <CardReview
-              imageAvatar="/avatar1.png"
-              name="Yunisara Aminah"
+              imageAvatar="/avatar4.png"
+              name="Satrio Wibodo"
               role="Backend Education-Hub "
               review="“Irwan has one of my team good collaboration with him. very open minded to discuss about project.“"
             />
             <CardReview
-              imageAvatar="/avatar2.png"
-              name="Yusuf Assydqi"
-              role="Frontend Rule AltaBookBridge"
+              imageAvatar="/avatar5.png"
+              name="Zakaria"
+              role="Frontend AltaBookBridge"
               review="“Very Excited to collaboration with Irwan that man has always motivated person and ambition. “"
             />
             <CardReview
-              imageAvatar="/avatar3.png"
+              imageAvatar="/avatar6.png"
               name="Hisnun"
               role="Headmaster MI NW Jerua"
               review="“Thanks to Irwan.  build awesome and function website for school. it very helpful for us. “"
@@ -359,14 +361,6 @@ export default function Home() {
         </ParallaxLayer>
         <ParallaxLayer offset={2.9} speed={1.3} className="mt-[1300px] z-10">
           <Image src={"/s5-v05.png"} alt="parallax-2" fill objectFit="cover" />
-        </ParallaxLayer>
-        <ParallaxLayer offset={3} speed={1.5} className="mt-[400px] z-10">
-          <Image
-            src={"/footer-vector.png"}
-            alt="footer"
-            fill
-            objectFit="cover"
-          />
         </ParallaxLayer>
         <ParallaxLayer offset={2.9} speed={1.3} className="mt-[800px] z-10">
           <div className="text-4xl text-white leading-relaxed font-semibold text-center">
@@ -396,7 +390,7 @@ export default function Home() {
             <p className="text-4xl text-white font-semibold text-center">
               Have a Project to Build ?
             </p>
-            <p>let’s collaborate, I’ll help you with my best</p>
+            <p>let’s collaborate, I’ll help you my best</p>
             <Link
               href={"https://wa.me/083807106747"}
               target="_blank"
@@ -417,6 +411,24 @@ export default function Home() {
               <p>Contact me</p>
             </Link>
           </div>
+        </ParallaxLayer>
+        <ParallaxLayer offset={3} speed={1.5} className="mt-[400px] z-10">
+          <Image
+            src={"/footer-vector.png"}
+            alt="footer"
+            fill
+            objectFit="cover"
+          />
+        </ParallaxLayer>
+        <ParallaxLayer offset={3} speed={0.7} className="mt-[550px] z-10">
+          <Footer
+            discord="https://discord.com/channels/irwan_fico_far"
+            linkedIn="https://www.linkedin.com/in/irwan-hadi-b7775a126/"
+            instagram="https://www.instagram.com/irwan_fico_far/"
+            facebook="https://www.facebook.com/irwan.hadi25"
+            youtube="https://www.youtube.com/channel/UC9uy_umt8ZsMjjj2N2vQYtA"
+            cv="https://drive.google.com/file/d/1rxPkk9rrC8q0ApFYFjyP_q_GRvsACbMs/view?usp=sharing"
+          />
         </ParallaxLayer>
       </Parallax>
     </main>
