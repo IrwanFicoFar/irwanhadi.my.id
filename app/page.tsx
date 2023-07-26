@@ -15,6 +15,20 @@ import {
 import { ButtonNav } from "./components/Button";
 import Link from "next/link";
 import { Footer } from "./components/Footer";
+import dynamic from "next/dynamic";
+
+import S1image1 from "@/public/s1-img1.png";
+import S1image2 from "@/public/s1-img2.png";
+import S1image3 from "@/public/s1-img3.png";
+import S1image4 from "@/public/s1-img4.png";
+
+import S5image1 from "@/public/s5-v01.png";
+import S5image2 from "@/public/s5-v02.png";
+import S5image3 from "@/public/s5-v03.png";
+import S5image4 from "@/public/s5-v04.png";
+import S5image5 from "@/public/s5-v05.png";
+
+// const ComponenFooter = dynamic(() => import('./components/Footer'), { ssr: false });
 
 export default function Home() {
   const [springs, api] = useSpring(() => ({
@@ -62,28 +76,28 @@ export default function Home() {
           </div>
           <div className="w-[50%] relative h-96">
             <Image
-              src={"/s1-img1.png"}
+              src={S1image1}
               alt="section1 image 1"
               width={204}
               height={134}
               className="flex-shrink-0 absolute top-0 left-0 "
             />
             <Image
-              src={"/s1-img2.png"}
+              src={S1image2}
               alt="section1 image 1"
               width={494}
               height={301}
               className="flex-shrink-0 absolute top-16 left-16 "
             />
             <Image
-              src={"/s1-img3.png"}
+              src={S1image3}
               alt="section1 image 1"
               width={255}
               height={176}
               className="flex-shrink-0 absolute top-72 left-0 "
             />
             <Image
-              src={"/s1-img4.png"}
+              src={S1image4}
               alt="section1 image 1"
               width={375}
               height={249}
@@ -348,19 +362,19 @@ export default function Home() {
           speed={1.5}
           className="mt-[400px] flex justify-center z-10"
         >
-          <Image src={"/s5-v01.png"} alt="parallax-2" fill objectFit="cover" />
+          <Image src={S5image1} alt="parallax-2" fill objectFit="cover" />
         </ParallaxLayer>
         <ParallaxLayer offset={2.9} speed={1.6} className="mt-[800px] z-10">
-          <Image src={"/s5-v02.png"} alt="parallax-2" fill objectFit="cover" />
+          <Image src={S5image2} alt="parallax-2" fill objectFit="cover" />
         </ParallaxLayer>
         <ParallaxLayer offset={2.9} speed={1.5} className="mt-[1000px] z-10">
-          <Image src={"/s5-v03.png"} alt="parallax-2" fill objectFit="cover" />
+          <Image src={S5image3} alt="parallax-2" fill objectFit="cover" />
         </ParallaxLayer>
         <ParallaxLayer offset={2.9} speed={1.4} className="mt-[1100px] z-10">
-          <Image src={"/s5-v04.png"} alt="parallax-2" fill objectFit="cover" />
+          <Image src={S5image4} alt="parallax-2" fill objectFit="cover" />
         </ParallaxLayer>
         <ParallaxLayer offset={2.9} speed={1.3} className="mt-[1300px] z-10">
-          <Image src={"/s5-v05.png"} alt="parallax-2" fill objectFit="cover" />
+          <Image src={S5image5} alt="parallax-2" fill objectFit="cover" />
         </ParallaxLayer>
         <ParallaxLayer offset={2.9} speed={1.3} className="mt-[800px] z-10">
           <div className="text-4xl text-white leading-relaxed font-semibold text-center">
