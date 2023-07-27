@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { MouseEventHandler, useState } from "react";
 
 export const CardTools = ({
   bg,
@@ -93,19 +93,22 @@ export const CardProject = ({
   description,
   title,
   cover,
+  onClick,
 }: {
   goTo: string;
   imageResource: string;
   description: string;
   title: string;
   cover: string;
+  onClick: MouseEventHandler<HTMLButtonElement>;
 }) => {
   const [rotate, setRotate] = useState<string>("");
   const [skew, setSkew] = useState<string>("-skew-y-6");
   const [showDescription, setShowDescription] = useState<string>("invisible");
 
   return (
-    <div
+    <button
+      onClick={onClick}
       className="relative flex justify-end items-center hover:-translate-y-2 duration-500 ease-in-out"
       onMouseEnter={() => {
         setSkew("");
@@ -148,12 +151,12 @@ export const CardProject = ({
           />
         </div>
         <div
-          className={`h-48 overflow-hidden mt-5 py-5 flex items-start justify-center ${showDescription} duration-500 ease-in-out`}
+          className={`h-48 overflow-hidden mt-5 py-5 flex items-start justify-start ${showDescription} duration-500 ease-in-out`}
         >
-          <p>&quot;{description}&quot;</p>
+          <p className="text-start">&quot;{description}&quot;</p>
         </div>
       </div>
-    </div>
+    </button>
   );
 };
 

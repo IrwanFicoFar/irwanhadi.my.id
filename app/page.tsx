@@ -3,7 +3,7 @@
 import { animated, useSpring } from "@react-spring/web";
 import { Parallax, ParallaxLayer, IParallax } from "@react-spring/parallax";
 import Image from "next/image";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Navbar } from "./components/Navbar";
 import {
   CardHeaderProject,
@@ -27,10 +27,17 @@ import S5image2 from "@/public/s5-v02.png";
 import S5image3 from "@/public/s5-v03.png";
 import S5image4 from "@/public/s5-v04.png";
 import S5image5 from "@/public/s5-v05.png";
+import { Modal } from "./components/Modal";
 
 // const ComponenFooter = dynamic(() => import('./components/Footer'), { ssr: false });
 
 export default function Home() {
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const toggleModal = () => {
+    setModalOpen((prev) => !prev);
+  };
+
   const [springs, api] = useSpring(() => ({
     from: { x: 0 },
   }));
@@ -313,6 +320,7 @@ export default function Home() {
               information about the schools they are interested in or finding the right school for them."
               cover="/education.png"
               title="Education-Hub"
+              onClick={toggleModal}
             />
             <CardProject
               goTo="https://www.youtube.com/channel/UC9uy_umt8ZsMjjj2N2vQYtA"
@@ -321,6 +329,7 @@ export default function Home() {
               events. Users can create their events directly on this platform. Additionally, can explore various other ossibilities events by accessing on the main page."
               cover="/event.png"
               title="Event Planner App"
+              onClick={toggleModal}
             />
             <CardProject
               goTo="https://www.youtube.com/channel/UC9uy_umt8ZsMjjj2N2vQYtA"
@@ -329,6 +338,7 @@ export default function Home() {
               detailed information about each Pokemon by simply clicking on its respective image."
               cover="/pokemon.png"
               title="Catch Pokemon App"
+              onClick={toggleModal}
             />
           </div>
         </ParallaxLayer>
@@ -451,6 +461,18 @@ export default function Home() {
           />
         </ParallaxLayer>
       </Parallax>
+      <Modal isOpen={modalOpen} onClose={toggleModal}>
+        <h2 className="text-2xl font-bold mb-4">This is a Modal</h2>
+        <p className="text-gray-700">
+          You can add any content you want inside the modal.
+        </p>
+        <button
+          className="mt-4 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+          onClick={toggleModal}
+        >
+          Close Modal
+        </button>
+      </Modal>
     </main>
   );
 }
