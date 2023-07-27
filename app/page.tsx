@@ -59,7 +59,13 @@ export default function Home() {
           <Image src={"/s1-v0.png"} alt="parallax-1" fill objectFit="cover" />
         </ParallaxLayer>
         <ParallaxLayer offset={0.1} speed={0.8} className="z-50">
-          <Navbar />
+          <Navbar
+            onClickHome={() => parallax.current.scrollTo(0)}
+            onClickAbout={() => parallax.current.scrollTo(0.6)}
+            onClickTools={() => parallax.current.scrollTo(1.05)}
+            onClickProject={() => parallax.current.scrollTo(1.7)}
+            onClickContact={() => parallax.current.scrollTo(3)}
+          />
         </ParallaxLayer>
         <ParallaxLayer offset={0.1} speed={1} className="mt-16 z-10">
           <Image src={"/s1-v1.png"} alt="parallax-1" fill objectFit="cover" />

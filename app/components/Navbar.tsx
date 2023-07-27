@@ -1,40 +1,51 @@
 import Link from "next/link";
-import React from "react";
+import React, { MouseEventHandler } from "react";
 import { ButtonNav } from "./Button";
 
-export const Navbar = () => {
-  const handleScrollToAbout = () => {
-    const element = document.getElementById("about");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+export const Navbar = ({
+  onClickHome,
+  onClickAbout,
+  onClickTools,
+  onClickProject,
+  onClickContact,
+}: {
+  onClickHome: MouseEventHandler<HTMLButtonElement>;
+  onClickAbout: MouseEventHandler<HTMLButtonElement>;
+  onClickTools: MouseEventHandler<HTMLButtonElement>;
+  onClickProject: MouseEventHandler<HTMLButtonElement>;
+  onClickContact: MouseEventHandler<HTMLButtonElement>;
+}) => {
   return (
     <div className="flex justify-end items-center w-full gap-10 px-36 font-medium text-purple-500">
       <ButtonNav
         // handleScrollToElement={handleScrollToAbout}
-        linkTo="#"
+
         label="Home"
+        onClick={onClickHome}
       />
       <ButtonNav
         // handleScrollToElement={handleScrollToAbout}
-        linkTo="#about"
+
         label="About me"
+        onClick={onClickAbout}
       />
       <ButtonNav
         // handleScrollToElement={handleScrollToAbout}
-        linkTo="#tools"
+
         label="Tools"
+        onClick={onClickTools}
       />
       <ButtonNav
         // handleScrollToElement={handleScrollToAbout}
-        linkTo="#project"
+
         label="Project"
+        onClick={onClickProject}
       />
       <ButtonNav
         // handleScrollToElement={handleScrollToAbout}
-        linkTo="#"
+
         label="Contact"
+        onClick={onClickContact}
       />
     </div>
   );
