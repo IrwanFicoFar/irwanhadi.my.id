@@ -17,7 +17,7 @@ export const CardTools = ({
     <div
       className={`${bg} rounded-3xl p-7 hover:scale-110 duration-500 hover:shadow-2xl hover:shadow-blue-800/70`}
     >
-      <div className="h-44 flex items-center justify-center">
+      <div className="md:h-32 lg:h-36 xl:h-44 flex items-center justify-center">
         <Image
           src={imageResource}
           alt="section1 image 1"
@@ -26,7 +26,7 @@ export const CardTools = ({
           objectFit="cover"
         />
       </div>
-      <div className="mt-5 py-5 flex items-center justify-center text-center text-xl font-medium">
+      <div className="text-white mt-5 py-5 flex items-center justify-center text-center text-xl font-medium">
         <p>{label}</p>
       </div>
     </div>

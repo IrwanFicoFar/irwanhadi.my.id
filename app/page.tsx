@@ -62,7 +62,7 @@ export default function Home() {
         pages={4}
         className="bg-bgDefault"
       >
-        <ParallaxLayer offset={0} speed={0.2} className="z-10">
+        <ParallaxLayer offset={0} speed={0.9} className="z-10">
           <Image src={"/s1-v0.png"} alt="parallax-1" fill objectFit="cover" />
         </ParallaxLayer>
         <ParallaxLayer offset={0.1} speed={0.8} className="z-50">
@@ -78,69 +78,69 @@ export default function Home() {
           <Image src={"/s1-v1.png"} alt="parallax-1" fill objectFit="cover" />
         </ParallaxLayer>
         <ParallaxLayer
-          offset={0.3}
+          offset={0.2}
           speed={0.7}
-          className="mt-5 z-40 flex px-36"
+          className="md:mt-16 z-40 flex flex-col md:flex-row px-10 ms:px-16 md:px-24 lg:px-36"
         >
-          <div className="w-[50%] mt-10  flex flex-col gap-5 text-transparent bg-clip-text bg-gradient-to-r from-white from-10% via-orange-300 via-70% to-red-300 to-90%">
-            <p className="text-6xl font-bold">Discover The Code,</p>
-            <p className="text-6xl font-bold">Learn The Craft,</p>
-            <p className="text-6xl font-bold">Excel as Developer.</p>
+          <div className="w-full md:w-[50%] mt-10 text-4xl sm:text-5xl lg:text-6xl flex flex-col font-bold gap-5 text-transparent bg-clip-text bg-gradient-to-r from-white from-10% via-orange-300 via-70% to-red-300 to-90%">
+            <p>Discover The Code,</p>
+            <p>Learn The Craft,</p>
+            <p>Excel as Developer.</p>
           </div>
-          <div className="w-[50%] relative h-96">
+          <div className="w-full md:w-[50%] relative h-96 pr-10 ">
             <Image
               src={S1image1}
               alt="section1 image 1"
               width={204}
               height={134}
-              className="flex-shrink-0 absolute top-0 left-0 "
+              className="flex-shrink-0 absolute top-0 left-0 hidden sm:block"
             />
             <Image
               src={S1image2}
               alt="section1 image 1"
               width={494}
               height={301}
-              className="flex-shrink-0 absolute top-16 left-16 "
+              className="flex-shrink-0 absolute top-16 left-2 sm:left-16 "
             />
             <Image
               src={S1image3}
               alt="section1 image 1"
               width={255}
               height={176}
-              className="flex-shrink-0 absolute top-72 left-0 "
+              className="flex-shrink-0 absolute top-44 sm:top-72 left-0 "
             />
             <Image
               src={S1image4}
               alt="section1 image 1"
               width={375}
               height={249}
-              className="flex-shrink-0 absolute top-64 right-0 "
+              className="flex-shrink-0 absolute top-56 sm:top-64 right-0 "
             />
           </div>
         </ParallaxLayer>
-        <ParallaxLayer offset={0.4} speed={0.7} className="mt-28 z-20">
+        <ParallaxLayer offset={0.4} speed={0.6} className="mt-28 z-20">
           <Image src={"/s1-v2.png"} alt="parallax-2" fill objectFit="cover" />
         </ParallaxLayer>
-        <ParallaxLayer offset={0.6} speed={0.8} className="mt-28 z-30">
+        <ParallaxLayer offset={0.6} speed={0.4} className="mt-28 z-30">
           <Image
             src={"/Vector 3.png"}
             alt="parallax-2"
-            width={2000}
-            height={900}
+            fill
+            objectFit="cover"
           />
         </ParallaxLayer>
         <ParallaxLayer
           offset={0.7}
           speed={0.6}
-          className="z-20 bg-bgDefault mt-52 h-[1048px]"
+          className="z-10 bg-bgDefault mt-52 h-[1048px]"
         ></ParallaxLayer>
         <ParallaxLayer
           offset={0.8}
           speed={0.7}
-          className="z-40 flex mt-32 px-36 "
+          className="z-40 flex flex-col lg:flex-row gap-5 mt-[500px] md:mt-32 px-10 ms:px-16 md:px-24 lg:px-36 "
           id="about"
         >
-          <div className="w-[50%] mt-10  flex flex-col justify-center gap-10 ">
+          <div className="w-full lg:w-[50%] mt-10  flex flex-col justify-center gap-10 ">
             <div className="relative rounded-lg  text-3xl font-medium bg-btn-navbar flex h-16 w-72 justify-center items-center border-white border-2 border-opacity-25">
               <p>Hi I am Irwan</p>
               <Image
@@ -151,7 +151,7 @@ export default function Home() {
                 className="absolute -top-4 -left-4 flex-shrink-0"
               />
             </div>
-            <div className="text-4xl text-white leading-relaxed font-semibold">
+            <div className="sm:text-2xl md:text-4xl text-white leading-relaxed font-semibold">
               <p>
                 As a <span className="text-purple-500">Frontend Engineer</span>,
                 I am enthusiastic about{" "}
@@ -160,7 +160,7 @@ export default function Home() {
                 of web development.
               </p>
             </div>
-            <div>
+            <div className="text-white">
               <p>
                 I am dedicated to mastering the necessary technologies and
                 frameworks for creating impressive user interfaces. Currently
@@ -171,7 +171,7 @@ export default function Home() {
               </p>
             </div>
           </div>
-          <div className="w-[50%] flex items-center justify-center">
+          <div className="w-full lg:w-[50%] flex items-center justify-center">
             <Image
               src={"/s2-img1.png"}
               alt="section1 image 1"
@@ -184,7 +184,7 @@ export default function Home() {
         <ParallaxLayer
           offset={1.1}
           speed={1.5}
-          className="z-40 mt-16 px-36 "
+          className="z-40 mt-[1000px] md:mt-[500px] lg:mt-16 px-10 ms:px-16 md:px-24 lg:px-36 "
           id="tools"
         >
           <div className="w-full mt-10  flex flex-col justify-center items-center gap-10 ">
@@ -193,7 +193,7 @@ export default function Home() {
               <p>build an app</p>
             </div>
             <div>
-              <p className="w-[648px] text-center">
+              <p className="w-full md:w-[648px] text-center text-white">
                 ”My tech stack will always continue to expand as I journey into
                 learning new things. The world of technology is ever-evolving,
                 and Iam thrilled to keep exploring and understanding the latest,
@@ -202,8 +202,12 @@ export default function Home() {
             </div>
           </div>
         </ParallaxLayer>
-        <ParallaxLayer offset={1.5} speed={2.25} className="z-40 mt-16 px-36 ">
-          <div className="w-full grid grid-cols-5 gap-5 mt-24">
+        <ParallaxLayer
+          offset={1.5}
+          speed={1.9}
+          className="z-40 mt-[1300px] md:mt-[600px] lg:mt-16 px-10 ms:px-16 md:px-24 lg:px-36 "
+        >
+          <div className="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 mt-24">
             <CardTools
               imageResource="/html.png"
               bg="bg-gradient-to-br from-sky-900 to-indigo-800"
@@ -256,16 +260,29 @@ export default function Home() {
             />
           </div>
         </ParallaxLayer>
-        <ParallaxLayer offset={1.9} speed={2.1} className="mt-[700px] px-36 ">
+        <ParallaxLayer
+          offset={1.9}
+          speed={2.1}
+          className="mt-[2900px]  sm:mt-[2800px] md:mt-[1800px] lg:mt-[1000px] xl:mt-[700px] "
+        >
           <Image src={"/s4-v1.png"} alt="parallax-1" fill objectFit="cover" />
         </ParallaxLayer>
-        <ParallaxLayer offset={1.9} speed={2.3} className=" mt-[700px] px-36 ">
+        <ParallaxLayer
+          offset={1.9}
+          speed={2.3}
+          className="mt-[2900px]  sm:mt-[2800px] md:mt-[1800px] lg:mt-[1000px]  xl:mt-[700px] "
+        >
           <Image src={"/s4-v2.png"} alt="parallax-1" fill objectFit="cover" />
         </ParallaxLayer>
-        <ParallaxLayer offset={1.9} speed={2} className="mt-[650px] px-36 ">
+        <ParallaxLayer
+          offset={1.9}
+          speed={2}
+          className="mt-[2850px]  sm:mt-[2750px] md:mt-[1750px] lg:mt-[950px] xl:mt-[650px]"
+        >
           <Image src={"/s4-v3.png"} alt="parallax-1" fill objectFit="cover" />
         </ParallaxLayer>
-        <ParallaxLayer
+
+        {/* <ParallaxLayer
           offset={1.9}
           speed={1.5}
           className="mt-[600px] flex px-36 gap-16"
@@ -296,7 +313,8 @@ export default function Home() {
               description="Explore more about the latest tech stack tutorials on Youtube."
             />
           </div>
-        </ParallaxLayer>
+        </ParallaxLayer> */}
+        {/*
         <ParallaxLayer
           offset={2}
           speed={1.2}
@@ -459,7 +477,7 @@ export default function Home() {
             youtube="https://www.youtube.com/channel/UC9uy_umt8ZsMjjj2N2vQYtA"
             cv="https://drive.google.com/file/d/1rxPkk9rrC8q0ApFYFjyP_q_GRvsACbMs/view?usp=sharing"
           />
-        </ParallaxLayer>
+        </ParallaxLayer> */}
       </Parallax>
       <Modal isOpen={modalOpen} onClose={toggleModal}>
         <h2 className="text-2xl font-bold mb-4">This is a Modal</h2>
