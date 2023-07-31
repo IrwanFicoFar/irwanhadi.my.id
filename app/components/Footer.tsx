@@ -18,7 +18,7 @@ export const Footer = ({
   cv: string;
 }) => {
   return (
-    <div className="flex flex-col gap-5 justify-end px-36">
+    <div className="text-white flex flex-col gap-5 justify-end px-10 sm:px-14 md:px-16 lg:px-24 xl:px-36">
       <div className="flex flex-col gap-3">
         <p className="text-end">Stay Connected</p>
         <div className="flex gap-5 justify-end">

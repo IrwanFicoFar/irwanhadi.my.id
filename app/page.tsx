@@ -12,10 +12,8 @@ import {
   CardService,
   CardTools,
 } from "./components/Card";
-import { ButtonNav } from "./components/Button";
 import Link from "next/link";
 import { Footer } from "./components/Footer";
-import dynamic from "next/dynamic";
 
 import S1image1 from "@/public/s1-img1.png";
 import S1image2 from "@/public/s1-img2.png";
@@ -33,25 +31,30 @@ import { Modal } from "./components/Modal";
 
 export default function Home() {
   const [modalOpen, setModalOpen] = useState(false);
+  const [pageParallax, setPageParallax] = useState(5);
+
+  const handleRezise = () => {
+    const screenWidth = window.innerWidth;
+    if (screenWidth >= 768) {
+      setPageParallax(4);
+    } else if (screenWidth < 768) {
+      setPageParallax(7);
+    }
+  };
+
+  React.useEffect(() => {
+    handleRezise();
+    window.addEventListener("resize", handleRezise);
+    return () => {
+      window.removeEventListener("resize", handleRezise);
+    };
+  }, []);
 
   const toggleModal = () => {
     setModalOpen((prev) => !prev);
   };
 
-  const [springs, api] = useSpring(() => ({
-    from: { x: 0 },
-  }));
-
-  const handleClick = () => {
-    api.start({
-      from: {
-        x: 0,
-      },
-      to: {
-        x: 100,
-      },
-    });
-  };
+  console.log(pageParallax);
 
   const parallax = useRef<IParallax>(null!);
   return (
@@ -59,7 +62,7 @@ export default function Home() {
       <Parallax
         style={{ top: 0 }}
         ref={parallax}
-        pages={4}
+        pages={pageParallax}
         className="bg-bgDefault"
       >
         <ParallaxLayer offset={0} speed={0.9} className="z-10">
@@ -238,26 +241,34 @@ export default function Home() {
               bg="bg-gradient-to-tr from-yellow-900 to-lime-800"
               label="React Javascript Library"
             />
-            <CardTools
-              imageResource="/next.png"
-              bg="bg-gradient-to-bl from-pink-900 to-rose-700"
-              label="Next Javascript Framework"
-            />
-            <CardTools
-              imageResource="/tailwind.png"
-              bg="bg-gradient-to-tl from-sky-600 to-purple-800"
-              label="Tailwind CSS"
-            />
-            <CardTools
-              imageResource="/axios.png"
-              bg="bg-gradient-to-br from-gray-500 to-emerald-800"
-              label="Axois API Integration"
-            />
-            <CardTools
-              imageResource="/figma.png"
-              bg="bg-gradient-to-tr from-violet-700 to-red-800"
-              label="Figma UI/UX Design"
-            />
+            <div className="hidden lg:flex">
+              <CardTools
+                imageResource="/next.png"
+                bg="bg-gradient-to-bl from-pink-900 to-rose-700"
+                label="Next Javascript Framework"
+              />
+            </div>
+            <div className="hidden lg:flex">
+              <CardTools
+                imageResource="/tailwind.png"
+                bg="bg-gradient-to-tl from-sky-600 to-purple-800"
+                label="Tailwind CSS"
+              />
+            </div>
+            <div className="hidden xl:flex">
+              <CardTools
+                imageResource="/axios.png"
+                bg="bg-gradient-to-br from-gray-500 to-emerald-800"
+                label="Axois API Integration"
+              />
+            </div>
+            <div className="hidden xl:flex">
+              <CardTools
+                imageResource="/figma.png"
+                bg="bg-gradient-to-tr from-violet-700 to-red-800"
+                label="Figma UI/UX Design"
+              />
+            </div>
           </div>
         </ParallaxLayer>
         <ParallaxLayer
@@ -281,13 +292,12 @@ export default function Home() {
         >
           <Image src={"/s4-v3.png"} alt="parallax-1" fill objectFit="cover" />
         </ParallaxLayer>
-
-        {/* <ParallaxLayer
+        <ParallaxLayer
           offset={1.9}
           speed={1.5}
-          className="mt-[600px] flex px-36 gap-16"
+          className="mt-[2550px]  sm:mt-[2650px] md:mt-[1750px] lg:mt-[1000px] xl:mt-[600px] flex flex-col gap-y-72 xl:flex-row px-10 ms:px-16 md:px-24 lg:px-36  gap-16"
         >
-          <div className="w-[30%] mt-10  flex flex-col justify-center gap-10 ">
+          <div className="xl:w-[30%] mt-10  flex flex-col justify-center gap-10 text-white">
             <div>
               <p>Project List</p>
             </div>
@@ -301,7 +311,7 @@ export default function Home() {
               </p>
             </div>
           </div>
-          <div className="w-[70%] grid grid-cols-2 items-center justify-end">
+          <div className="lg:w-[70%] grid grid-cols-1 sm:grid-cols-2  gap-96 sm:gap-3 md:gap-16 xl:gap-2 items-center justify-end">
             <CardHeaderProject
               goTo="https://github.com/IrwanFicoFar"
               imageResource="/github.png"
@@ -313,12 +323,11 @@ export default function Home() {
               description="Explore more about the latest tech stack tutorials on Youtube."
             />
           </div>
-        </ParallaxLayer> */}
-        {/*
+        </ParallaxLayer>
         <ParallaxLayer
           offset={2}
           speed={1.2}
-          className="flex justify-center"
+          className="flex justify-center mt-[2400px] sm:mt-[2000px] md:mt-[1200px] lg:mt-[600px] xl:mt-[150px]"
           id="project"
         >
           <Link
@@ -329,8 +338,12 @@ export default function Home() {
             <p>More project</p>
           </Link>
         </ParallaxLayer>
-        <ParallaxLayer offset={2.4} speed={1.7} className="px-56">
-          <div className="grid grid-cols-3 gap-16">
+        <ParallaxLayer
+          offset={2.4}
+          speed={1.7}
+          className="px-10 md:px-16 lg:px-24 xl:gap-44 2xl:px-56  mt-[2900px] sm:mt-[2500px] md:mt-[1500px] lg:mt-[800px] xl:mt-[300px]"
+        >
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-[600px] sm:gap-x-10 sm:gap-y-[600px] md:gap-5 lg:gap-10 xl:gap-16">
             <CardProject
               goTo="https://www.youtube.com/channel/UC9uy_umt8ZsMjjj2N2vQYtA"
               imageResource="/education.png"
@@ -360,17 +373,28 @@ export default function Home() {
             />
           </div>
         </ParallaxLayer>
-        <ParallaxLayer offset={2.9} speed={1.2} className="mt-24 px-36">
-          <div className="text-4xl text-white leading-relaxed font-semibold text-center">
+        <ParallaxLayer
+          offset={2.9}
+          speed={1.2}
+          className="mt-[3400px] sm:mt-[2600px] md:mt-[1300px] lg:mt-[800px] xl:mt-[300px]  px-10 sm:px-24 md:px-36"
+        >
+          <div className="text-xl sm:tex-3xl md:text-4xl text-white leading-relaxed font-semibold text-center">
             <p>What They Says</p>
+            <div className="flex justify-center">
+              <p className="text-sm font-medium mt-5 lg:w-[700px] xl:w-96">
+                &quot;I am gathering reviews from those who collaborated with me
+                on the project, including input from friends, mentor, and client
+                feedback.&quot;
+              </p>
+            </div>
           </div>
         </ParallaxLayer>
         <ParallaxLayer
           offset={2.9}
           speed={1.8}
-          className="mt-[500px] px-36 z-20"
+          className="mt-[4700px] sm:mt-[3700px] md:mt-[2100px] lg:mt-[1500px] xl:mt-[900px] px-10 sm:px-16 md:px-24 lg:px-28 xl:px-32 2xl:px-36 z-20"
         >
-          <div className="grid grid-cols-3 gap-24">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 sm:gap-12 md:gap-14 lg:gap-16 xl:gap-24">
             <CardReview
               imageAvatar="/avatar4.png"
               name="Satrio Wibodo"
@@ -394,29 +418,53 @@ export default function Home() {
         <ParallaxLayer
           offset={2.9}
           speed={1.5}
-          className="mt-[400px] flex justify-center z-10"
+          className="mt-[4700px] sm:mt-[3700px] md:mt-[2200px] lg:mt-[1400px] xl:mt-[700px]  2xl:mt-[700px] flex justify-center z-10"
         >
           <Image src={S5image1} alt="parallax-2" fill objectFit="cover" />
         </ParallaxLayer>
-        <ParallaxLayer offset={2.9} speed={1.6} className="mt-[800px] z-10">
+        <ParallaxLayer
+          offset={2.9}
+          speed={1.6}
+          className="mt-[5400px] sm:mt-[4300px] md:mt-[2700px] lg:mt-[1900px] xl:mt-[1200px] 2xl:mt-[1200px]  z-10"
+        >
           <Image src={S5image2} alt="parallax-2" fill objectFit="cover" />
         </ParallaxLayer>
-        <ParallaxLayer offset={2.9} speed={1.5} className="mt-[1000px] z-10">
+        <ParallaxLayer
+          offset={2.9}
+          speed={1.5}
+          className="mt-[5500px] sm:mt-[4300px] md:mt-[2800px] lg:mt-[2000px]  xl:mt-[1300px] 2xl:mt-[1400px] z-10"
+        >
           <Image src={S5image3} alt="parallax-2" fill objectFit="cover" />
         </ParallaxLayer>
-        <ParallaxLayer offset={2.9} speed={1.4} className="mt-[1100px] z-10">
+        <ParallaxLayer
+          offset={2.9}
+          speed={1.4}
+          className="mt-[5800px] sm:mt-[4600px] md:mt-[3000px] lg:mt-[2000px]  xl:mt-[1350px] 2xl:mt-[1400px] z-10"
+        >
           <Image src={S5image4} alt="parallax-2" fill objectFit="cover" />
         </ParallaxLayer>
-        <ParallaxLayer offset={2.9} speed={1.3} className="mt-[1300px] z-10">
+        <ParallaxLayer
+          offset={2.9}
+          speed={1.3}
+          className="mt-[5800px] sm:mt-[4500px] md:mt-[3000px] lg:mt-[2100px]  xl:mt-[1600px] 2xl:mt-[1600px] z-10"
+        >
           <Image src={S5image5} alt="parallax-2" fill objectFit="cover" />
         </ParallaxLayer>
-        <ParallaxLayer offset={2.9} speed={1.3} className="mt-[800px] z-10">
-          <div className="text-4xl text-white leading-relaxed font-semibold text-center">
+        <ParallaxLayer
+          offset={2.9}
+          speed={1.3}
+          className="mt-[4700px] sm:mt-[4000px] md:mt-[2500px] lg:mt-[1800px] xl:mt-[1200px] z-10"
+        >
+          <div className="text-2xl sm:text-3xl md:text-4xl text-white leading-relaxed font-semibold text-center">
             <p>What can I do for You ?</p>
           </div>
         </ParallaxLayer>
-        <ParallaxLayer offset={2.9} speed={1.1} className="mt-[850px] z-10">
-          <div className="flex justify-center gap-20 mx-auto">
+        <ParallaxLayer
+          offset={2.9}
+          speed={1.1}
+          className="mt-[4400px] sm:mt-[3800px]  md:mt-[2400px] lg:mt-[1800px] xl:mt-[1200px] z-10"
+        >
+          <div className="flex flex-col md:flex-row justify-center gap-10 md:gap-20 px-10 sm:px-26 md:px-24  mx-auto ">
             <CardService
               title="🌐 Frontend"
               description="I'll turn your cool designs into a beautiful and responsive
@@ -432,10 +480,10 @@ export default function Home() {
         <ParallaxLayer
           offset={2.9}
           speed={1}
-          className="mt-[1200px]  flex justify-center z-10"
+          className="mt-[5150px] sm:mt-[4300px]  md:mt-[2900px] lg:mt-[2200px] xl:mt-[1750px] 2xl:mt-[1500px]  flex justify-center z-10"
         >
-          <div className="w-[50%] flex flex-col items-center gap-10">
-            <p className="text-4xl text-white font-semibold text-center">
+          <div className="w-[60%] sm:w-[70%] md:w-[50%] flex flex-col items-center gap-10 text-white">
+            <p className="text-2xl sm:text-3xl md:text-4xl  font-semibold text-center">
               Have a Project to Build ?
             </p>
             <p>let’s collaborate, I’ll help you my best</p>
@@ -456,11 +504,15 @@ export default function Home() {
                   stroke="white"
                 />
               </svg>
-              <p>Contact me</p>
+              <p className="text-2xl sm:text-3xl md:text-4xl">Contact me</p>
             </Link>
           </div>
         </ParallaxLayer>
-        <ParallaxLayer offset={3} speed={1.5} className="mt-[400px] z-10">
+        <ParallaxLayer
+          offset={3}
+          speed={1.5}
+          className="mt-[5700px] sm:mt-[4000px]  md:mt-[2400px] lg:mt-[1400px] xl:mt-[900px] 2xl:mt-[900px] z-10"
+        >
           <Image
             src={"/footer-vector.png"}
             alt="footer"
@@ -468,7 +520,11 @@ export default function Home() {
             objectFit="cover"
           />
         </ParallaxLayer>
-        <ParallaxLayer offset={3} speed={0.7} className="mt-[550px] z-10">
+        <ParallaxLayer
+          offset={3}
+          speed={0.7}
+          className="mt-[4100px] sm:mt-[3100px] md:mt-[2000px]  lg:mt-[1300px] xl:mt-[900px] z-10"
+        >
           <Footer
             discord="https://discord.com/channels/irwan_fico_far"
             linkedIn="https://www.linkedin.com/in/irwan-hadi-b7775a126/"
@@ -477,7 +533,7 @@ export default function Home() {
             youtube="https://www.youtube.com/channel/UC9uy_umt8ZsMjjj2N2vQYtA"
             cv="https://drive.google.com/file/d/1rxPkk9rrC8q0ApFYFjyP_q_GRvsACbMs/view?usp=sharing"
           />
-        </ParallaxLayer> */}
+        </ParallaxLayer>
       </Parallax>
       <Modal isOpen={modalOpen} onClose={toggleModal}>
         <h2 className="text-2xl font-bold mb-4">This is a Modal</h2>
