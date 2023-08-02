@@ -1,5 +1,8 @@
 "use client";
 
+import Tools from "./data/Tools.json";
+import ProjectHeadline from "./data/ProjectHeadline.json";
+
 import { animated, useSpring } from "@react-spring/web";
 import { Parallax, ParallaxLayer, IParallax } from "@react-spring/parallax";
 import Image from "next/image";
@@ -31,14 +34,24 @@ import { Modal } from "./components/Modal";
 
 export default function Home() {
   const [modalOpen, setModalOpen] = useState(false);
-  const [pageParallax, setPageParallax] = useState(5);
+  const [maxData, setMaxData] = useState(10);
+  const [startData, setStartData] = useState(0);
+  const [idPeorject, setIdProject] = useState<number>(0);
 
   const handleRezise = () => {
     const screenWidth = window.innerWidth;
-    if (screenWidth >= 768) {
-      setPageParallax(4);
-    } else if (screenWidth < 768) {
-      setPageParallax(7);
+    if (screenWidth <= 1280 && screenWidth > 1024) {
+      setMaxData(8);
+      setStartData(0);
+    } else if (screenWidth <= 1024 && screenWidth > 768) {
+      setMaxData(6);
+      setStartData(0);
+    } else if (screenWidth <= 768) {
+      setMaxData(4);
+      setStartData(0);
+    } else {
+      setMaxData(10);
+      setStartData(0);
     }
   };
 
@@ -50,11 +63,25 @@ export default function Home() {
     };
   }, []);
 
+  const data = Tools.slice(startData, startData + maxData);
+
   const toggleModal = () => {
     setModalOpen((prev) => !prev);
   };
 
-  console.log(pageParallax);
+  const prevData = () => {
+    setStartData(startData - maxData);
+    if (startData < 0) {
+      setStartData(0);
+    }
+  };
+
+  const nextData = () => {
+    setStartData(startData + maxData);
+  };
+
+  console.log(`max Data = ${maxData}`);
+  console.log(`start data = ${startData}`);
 
   const parallax = useRef<IParallax>(null!);
   return (
@@ -62,7 +89,7 @@ export default function Home() {
       <Parallax
         style={{ top: 0 }}
         ref={parallax}
-        pages={pageParallax}
+        pages={5}
         className="bg-bgDefault"
       >
         <ParallaxLayer offset={0} speed={0.9} className="z-10">
@@ -211,64 +238,32 @@ export default function Home() {
           className="z-40 mt-[1300px] md:mt-[600px] lg:mt-16 px-10 ms:px-16 md:px-24 lg:px-36 "
         >
           <div className="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 mt-24">
-            <CardTools
-              imageResource="/html.png"
-              bg="bg-gradient-to-br from-sky-900 to-indigo-800"
-              label="HyperText Markup Language"
-            />
-            <CardTools
-              imageResource="/css.png"
-              bg="bg-gradient-to-tr from-slate-700 to-orange-800"
-              label="Cascading Style Sheets"
-            />
-            <CardTools
-              imageResource="/js.png"
-              bg="bg-gradient-to-bl from-purple-800 to-orange-800"
-              label="Javascript Language"
-            />
-            <CardTools
-              imageResource="/ts.png"
-              bg="bg-gradient-to-tl from-violet-800 to-fuchsia-700"
-              label="Typescript Language"
-            />
-            <CardTools
-              imageResource="/node.png"
-              bg="bg-gradient-to-br bg-gradient-to-bl from-teal-600 to-blue-900"
-              label="Node Javascript"
-            />
-            <CardTools
-              imageResource="/react.png"
-              bg="bg-gradient-to-tr from-yellow-900 to-lime-800"
-              label="React Javascript Library"
-            />
-            <div className="hidden lg:flex">
+            {data.map((data) => (
               <CardTools
-                imageResource="/next.png"
-                bg="bg-gradient-to-bl from-pink-900 to-rose-700"
-                label="Next Javascript Framework"
+                key={data.id}
+                imageResource={data.image}
+                bg={data.background}
+                label={data.descriptions}
               />
-            </div>
-            <div className="hidden lg:flex">
-              <CardTools
-                imageResource="/tailwind.png"
-                bg="bg-gradient-to-tl from-sky-600 to-purple-800"
-                label="Tailwind CSS"
-              />
-            </div>
-            <div className="hidden xl:flex">
-              <CardTools
-                imageResource="/axios.png"
-                bg="bg-gradient-to-br from-gray-500 to-emerald-800"
-                label="Axois API Integration"
-              />
-            </div>
-            <div className="hidden xl:flex">
-              <CardTools
-                imageResource="/figma.png"
-                bg="bg-gradient-to-tr from-violet-700 to-red-800"
-                label="Figma UI/UX Design"
-              />
-            </div>
+            ))}
+          </div>
+          <div className="flex justify-center">
+            <button
+              className={`${
+                startData <= 0 ? "hidden" : "block"
+              } p-2 border-2 border-cyan-500`}
+              onClick={prevData}
+            >
+              prev
+            </button>
+            <button
+              className={`${
+                startData >= Tools.length - maxData ? "hidden" : "block"
+              } p-2 border-2 border-cyan-500 `}
+              onClick={nextData}
+            >
+              next
+            </button>
           </div>
         </ParallaxLayer>
         <ParallaxLayer
@@ -344,7 +339,20 @@ export default function Home() {
           className="px-10 md:px-16 lg:px-24 xl:gap-44 2xl:px-56  mt-[2900px] sm:mt-[2500px] md:mt-[1500px] lg:mt-[800px] xl:mt-[300px]"
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-[600px] sm:gap-x-10 sm:gap-y-[600px] md:gap-5 lg:gap-10 xl:gap-16">
-            <CardProject
+            {ProjectHeadline.map((data) => (
+              <CardProject
+                key={data.id}
+                goTo="https://www.youtube.com/channel/UC9uy_umt8ZsMjjj2N2vQYtA"
+                imageResource={data.image}
+                description={data.description}
+                cover={data.image}
+                title={data.title}
+                onClick={() => {
+                  setModalOpen(!modalOpen), setIdProject(data.id);
+                }}
+              />
+            ))}
+            {/* <CardProject
               goTo="https://www.youtube.com/channel/UC9uy_umt8ZsMjjj2N2vQYtA"
               imageResource="/education.png"
               description="Education Hub is a web platform used to facilitate prospective students in obtaining detailed
@@ -370,7 +378,7 @@ export default function Home() {
               cover="/pokemon.png"
               title="Catch Pokemon App"
               onClick={toggleModal}
-            />
+            /> */}
           </div>
         </ParallaxLayer>
         <ParallaxLayer
@@ -535,18 +543,50 @@ export default function Home() {
           />
         </ParallaxLayer>
       </Parallax>
-      <Modal isOpen={modalOpen} onClose={toggleModal}>
-        <h2 className="text-2xl font-bold mb-4">This is a Modal</h2>
-        <p className="text-gray-700">
-          You can add any content you want inside the modal.
-        </p>
-        <button
-          className="mt-4 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-          onClick={toggleModal}
-        >
-          Close Modal
-        </button>
-      </Modal>
+      {ProjectHeadline.map((data) =>
+        data.id === idPeorject ? (
+          <Modal isOpen={modalOpen} onClose={toggleModal} key={data.id}>
+            <div className="sm:w-[600px] text-gray-700">
+              <div className="relative h-64">
+                <Image
+                  src={data.image}
+                  fill
+                  objectFit="cover"
+                  alt={`image project ${data.title}`}
+                  className="rounded-xl"
+                />
+              </div>
+              <h2 className="text-gray-700 text-2xl font-bold my-4">
+                {data.title}
+              </h2>
+              <p className="">{data.description}</p>
+              <div className="mt-5">
+                <p className="font-semibold">Tech Stack</p>
+                <div className="flex flex-wrap max-w-4xl">
+                  {data.tools.map((data) => (
+                    <div
+                      key={data}
+                      className="border-2 border-cyan-500 m-2 p-3 rounded-xl"
+                    >
+                      {data}
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="flex justify-end">
+                <button
+                  className="mt-4 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-xl "
+                  onClick={toggleModal}
+                >
+                  Close Modal
+                </button>
+              </div>
+            </div>
+          </Modal>
+        ) : (
+          <></>
+        )
+      )}
     </main>
   );
 }

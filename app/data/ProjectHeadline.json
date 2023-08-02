@@ -1,0 +1,45 @@
+[
+  {
+    "id": 1,
+    "title": "MI NW Jerua",
+    "image": "https://firebasestorage.googleapis.com/v0/b/portfolio-4ea92.appspot.com/o/minwjerua.png?alt=media&token=1fa20e0e-f865-4a37-9ac2-d53902d6ad0a",
+    "description": "MI NW Jerua is a school website for elementary school in West Sakra",
+    "tools": [
+      "Typescript",
+      "Next.js",
+      "Tailwind CSS",
+      "Headless UI",
+      "flowbite-react",
+      "axios"
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Education Hub",
+    "image": "https://firebasestorage.googleapis.com/v0/b/portfolio-4ea92.appspot.com/o/education.png?alt=media&token=4adc41c2-ce05-46ed-af0f-c4f1c8dd5fbe",
+    "description": "Education Hub is a web platform used to facilitate prospective students in obtaining detaile information about the schools they are interested",
+    "tools": [
+      "Typescirpt",
+      "Vite.js",
+      "Tailwind CSS",
+      "Headless UI",
+      "axios",
+      "React-Hook-Form",
+      "Pusher.js"
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Event Planner App",
+    "image": "https://firebasestorage.googleapis.com/v0/b/portfolio-4ea92.appspot.com/o/event.png?alt=media&token=b445155d-8d35-4000-9794-a7b0333a5828",
+    "description": "designed for creating and managing events. Users can create their events directly on this platform.",
+    "tools": [
+      "Typescirpt",
+      "Vite.js",
+      "Tailwind CSS",
+      "Headless UI",
+      "axios",
+      "Pusher.js"
+    ]
+  }
+]

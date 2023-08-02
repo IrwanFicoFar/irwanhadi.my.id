@@ -108,7 +108,7 @@ export const CardProject = ({
   return (
     <button
       onClick={onClick}
-      className="relative flex justify-end items-center hover:-translate-y-2 duration-500 ease-in-out"
+      className="text-white relative flex justify-end items-center hover:-translate-y-2 duration-500 ease-in-out"
       onMouseEnter={() => {
         setSkew("");
         setRotate("-rotate-100");

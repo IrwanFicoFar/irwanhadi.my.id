@@ -3,7 +3,6 @@ import React, { MouseEventHandler, useRef } from "react";
 import { Parallax, ParallaxLayer, IParallax } from "@react-spring/parallax";
 export const ButtonNav = ({
   label,
-
   addClass,
   onClick,
 }: // handleScrollToElement,
