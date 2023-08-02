@@ -25,3 +25,22 @@ export const ButtonNav = ({
     </button>
   );
 };
+
+export const ButtonPagination = ({
+  condition,
+  navigation,
+  label,
+}: {
+  condition: string;
+  navigation: MouseEventHandler<HTMLButtonElement>;
+  label: string;
+}) => {
+  return (
+    <button
+      className={`${condition} capitalize bg-btn-navbar py-3 px-8 rounded-xl text-2xl border-2 border-cyan-500 `}
+      onClick={navigation}
+    >
+      {label}
+    </button>
+  );
+};

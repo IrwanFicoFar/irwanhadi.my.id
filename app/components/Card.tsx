@@ -15,7 +15,7 @@ export const CardTools = ({
 }) => {
   return (
     <div
-      className={`${bg} rounded-3xl p-7 hover:scale-110 duration-500 hover:shadow-2xl hover:shadow-blue-800/70`}
+      className={`${bg} flex flex-col justify-around rounded-3xl p-7 hover:scale-110 duration-500 hover:shadow-2xl hover:shadow-blue-800/70 h-[320px]`}
     >
       <div className="md:h-32 lg:h-36 xl:h-44 flex items-center justify-center">
         <Image

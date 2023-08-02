@@ -29,6 +29,8 @@ import S5image3 from "@/public/s5-v03.png";
 import S5image4 from "@/public/s5-v04.png";
 import S5image5 from "@/public/s5-v05.png";
 import { Modal } from "./components/Modal";
+import dynamic from "next/dynamic";
+import { ButtonPagination } from "./components/Button";
 
 // const ComponenFooter = dynamic(() => import('./components/Footer'), { ssr: false });
 
@@ -63,8 +65,6 @@ export default function Home() {
     };
   }, []);
 
-  const data = Tools.slice(startData, startData + maxData);
-
   const toggleModal = () => {
     setModalOpen((prev) => !prev);
   };
@@ -80,9 +80,7 @@ export default function Home() {
     setStartData(startData + maxData);
   };
 
-  console.log(`max Data = ${maxData}`);
-  console.log(`start data = ${startData}`);
-
+  const data = Tools.slice(startData, startData + maxData);
   const parallax = useRef<IParallax>(null!);
   return (
     <main className="min-h-screen">
@@ -237,33 +235,33 @@ export default function Home() {
           speed={1.9}
           className="z-40 mt-[1300px] md:mt-[600px] lg:mt-16 px-10 ms:px-16 md:px-24 lg:px-36 "
         >
-          <div className="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 mt-24">
-            {data.map((data) => (
-              <CardTools
-                key={data.id}
-                imageResource={data.image}
-                bg={data.background}
-                label={data.descriptions}
-              />
-            ))}
+          <div className="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 mt-24  h-[700px]">
+            {Tools ? (
+              data.map((data) => (
+                <CardTools
+                  key={data.id}
+                  imageResource={data.image}
+                  bg={data.background}
+                  label={data.descriptions}
+                />
+              ))
+            ) : (
+              <div>Loading</div>
+            )}
           </div>
-          <div className="flex justify-center">
-            <button
-              className={`${
-                startData <= 0 ? "hidden" : "block"
-              } p-2 border-2 border-cyan-500`}
-              onClick={prevData}
-            >
-              prev
-            </button>
-            <button
-              className={`${
+          <div className="flex justify-center gap-5 mt-10">
+            <ButtonPagination
+              condition={startData <= 0 ? "hidden" : "block"}
+              navigation={prevData}
+              label="prev"
+            />
+            <ButtonPagination
+              condition={
                 startData >= Tools.length - maxData ? "hidden" : "block"
-              } p-2 border-2 border-cyan-500 `}
-              onClick={nextData}
-            >
-              next
-            </button>
+              }
+              navigation={nextData}
+              label="next"
+            />
           </div>
         </ParallaxLayer>
         <ParallaxLayer

@@ -67,6 +67,6 @@
     "title": "FIGMA",
     "descriptions": "Figma UI Design",
     "image": "https://firebasestorage.googleapis.com/v0/b/portfolio-4ea92.appspot.com/o/figma.png?alt=media&token=02a32645-69b4-4753-bb6c-053fdd233033",
-    "background": "bg-gradient-to-br from-gray-500 to-emerald-800"
+    "background": "bg-gradient-to-bl from-gray-500 to-orange-800"
   }
 ]
