@@ -37,7 +37,7 @@ export const ButtonPagination = ({
 }) => {
   return (
     <button
-      className={`${condition} capitalize bg-btn-navbar py-3 px-8 rounded-xl text-2xl border-2 border-cyan-500 `}
+      className={`${condition} text-white capitalize bg-btn-navbar py-3 px-8 rounded-xl text-lg sm:text-2xl border-2 border-cyan-500 `}
       onClick={navigation}
     >
       {label}

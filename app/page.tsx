@@ -7,7 +7,7 @@ import { animated, useSpring } from "@react-spring/web";
 import { Parallax, ParallaxLayer, IParallax } from "@react-spring/parallax";
 import Image from "next/image";
 import React, { useRef, useState } from "react";
-import { Navbar } from "./components/Navbar";
+import { Navbar, Sidenavbar } from "./components/Navbar";
 import {
   CardHeaderProject,
   CardProject,
@@ -29,26 +29,24 @@ import S5image3 from "@/public/s5-v03.png";
 import S5image4 from "@/public/s5-v04.png";
 import S5image5 from "@/public/s5-v05.png";
 import { Modal } from "./components/Modal";
-import dynamic from "next/dynamic";
 import { ButtonPagination } from "./components/Button";
-
-// const ComponenFooter = dynamic(() => import('./components/Footer'), { ssr: false });
 
 export default function Home() {
   const [modalOpen, setModalOpen] = useState(false);
   const [maxData, setMaxData] = useState(10);
   const [startData, setStartData] = useState(0);
   const [idPeorject, setIdProject] = useState<number>(0);
+  const [openSideNav, setOpenSideNav] = useState<boolean>(false);
 
   const handleRezise = () => {
     const screenWidth = window.innerWidth;
-    if (screenWidth <= 1280 && screenWidth > 1024) {
+    if (screenWidth < 1280 && screenWidth >= 1024) {
       setMaxData(8);
       setStartData(0);
-    } else if (screenWidth <= 1024 && screenWidth > 768) {
+    } else if (screenWidth < 1024 && screenWidth >= 768) {
       setMaxData(6);
       setStartData(0);
-    } else if (screenWidth <= 768) {
+    } else if (screenWidth < 768) {
       setMaxData(4);
       setStartData(0);
     } else {
@@ -93,13 +91,20 @@ export default function Home() {
         <ParallaxLayer offset={0} speed={0.9} className="z-10">
           <Image src={"/s1-v0.png"} alt="parallax-1" fill objectFit="cover" />
         </ParallaxLayer>
-        <ParallaxLayer offset={0.1} speed={0.8} className="z-50">
+        <ParallaxLayer
+          offset={0.1}
+          speed={0.8}
+          className="sm:mt-24 lg:mt-5 z-50"
+        >
           <Navbar
+            handleOpen={() => setOpenSideNav(true)}
             onClickHome={() => parallax.current.scrollTo(0)}
-            onClickAbout={() => parallax.current.scrollTo(0.6)}
-            onClickTools={() => parallax.current.scrollTo(1.05)}
-            onClickProject={() => parallax.current.scrollTo(1.7)}
-            onClickContact={() => parallax.current.scrollTo(3)}
+            onClickAbout={() => parallax.current.scrollTo(0.7)}
+            onClickTools={() =>
+              parallax.current.scrollTo(screenWidth < 640 ? 1.5 : 1.3)
+            }
+            onClickProject={() => parallax.current.scrollTo(1.9)}
+            onClickContact={() => parallax.current.scrollTo(4)}
           />
         </ParallaxLayer>
         <ParallaxLayer offset={0.1} speed={1} className="mt-16 z-10">
@@ -108,14 +113,14 @@ export default function Home() {
         <ParallaxLayer
           offset={0.2}
           speed={0.7}
-          className="md:mt-16 z-40 flex flex-col md:flex-row px-10 ms:px-16 md:px-24 lg:px-36"
+          className="md:mt-16 lg:mt-36 z-40 flex flex-col md:gap-24 lg:flex-row px-10 ms:px-16 md:px-24 lg:px-36"
         >
-          <div className="w-full md:w-[50%] mt-10 text-4xl sm:text-5xl lg:text-6xl flex flex-col font-bold gap-5 text-transparent bg-clip-text bg-gradient-to-r from-white from-10% via-orange-300 via-70% to-red-300 to-90%">
+          <div className="w-full lg:w-[50%] sm:mt-10 text-2xl sm:text-4xl md:text-5xl lg:text-6xl flex flex-col font-bold sm:gap-5 text-transparent bg-clip-text bg-gradient-to-r from-white from-10% via-orange-300 via-70% to-red-300 to-90%">
             <p>Discover The Code,</p>
             <p>Learn The Craft,</p>
             <p>Excel as Developer.</p>
           </div>
-          <div className="w-full md:w-[50%] relative h-96 pr-10 ">
+          <div className="w-full lg:w-[50%] relative h-96 pr-10 ">
             <Image
               src={S1image1}
               alt="section1 image 1"
@@ -165,11 +170,11 @@ export default function Home() {
         <ParallaxLayer
           offset={0.8}
           speed={0.7}
-          className="z-40 flex flex-col lg:flex-row gap-5 mt-[500px] md:mt-32 px-10 ms:px-16 md:px-24 lg:px-36 "
+          className="z-40 flex flex-col lg:flex-row gap-5 mt-[300px] md:mt-[700px] lg:mt-[300px] px-10 ms:px-16 md:px-24 lg:px-36 "
           id="about"
         >
-          <div className="w-full lg:w-[50%] mt-10  flex flex-col justify-center gap-10 ">
-            <div className="relative rounded-lg  text-3xl font-medium bg-btn-navbar flex h-16 w-72 justify-center items-center border-white border-2 border-opacity-25">
+          <div className="w-full lg:w-[50%] mt-10  flex flex-col justify-center gap-10 text-white">
+            <div className="relative rounded-lg  text-2xl font-medium bg-btn-navbar flex h-16 w-72 justify-center items-center border-white border-2 border-opacity-25">
               <p>Hi I am Irwan</p>
               <Image
                 src={"/hand.png"}
@@ -179,7 +184,7 @@ export default function Home() {
                 className="absolute -top-4 -left-4 flex-shrink-0"
               />
             </div>
-            <div className="sm:text-2xl md:text-4xl text-white leading-relaxed font-semibold">
+            <div className="sm:text-2xl md:text-3xl text-white leading-relaxed font-semibold">
               <p>
                 As a <span className="text-purple-500">Frontend Engineer</span>,
                 I am enthusiastic about{" "}
@@ -212,11 +217,11 @@ export default function Home() {
         <ParallaxLayer
           offset={1.1}
           speed={1.5}
-          className="z-40 mt-[1000px] md:mt-[500px] lg:mt-16 px-10 ms:px-16 md:px-24 lg:px-36 "
+          className="z-40 mt-[550px] sm:mt-[500px] md:mt-[1200px] lg:mt-[400px] px-10 ms:px-16 md:px-24 lg:px-36 "
           id="tools"
         >
           <div className="w-full mt-10  flex flex-col justify-center items-center gap-10 ">
-            <div className="text-4xl text-white leading-relaxed font-semibold flex flex-col items-center">
+            <div className="text-2xl sm:text-3xl md:text-4xl text-white leading-relaxed font-semibold flex flex-col items-center">
               <p>Tech stack to </p>
               <p>build an app</p>
             </div>
@@ -232,8 +237,8 @@ export default function Home() {
         </ParallaxLayer>
         <ParallaxLayer
           offset={1.5}
-          speed={1.9}
-          className="z-40 mt-[1300px] md:mt-[600px] lg:mt-16 px-10 ms:px-16 md:px-24 lg:px-36 "
+          speed={1.8}
+          className="z-40 mt-[700px] sm:mt-[500px] md:mt-[1300px] lg:mt-96 xl:mt-[500px] px-10 ms:px-16 md:px-24 lg:px-36 "
         >
           <div className="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 mt-24  h-[700px]">
             {Tools ? (
@@ -241,7 +246,6 @@ export default function Home() {
                 <CardTools
                   key={data.id}
                   imageResource={data.image}
-                  bg={data.background}
                   label={data.descriptions}
                 />
               ))
@@ -267,34 +271,34 @@ export default function Home() {
         <ParallaxLayer
           offset={1.9}
           speed={2.1}
-          className="mt-[2900px]  sm:mt-[2800px] md:mt-[1800px] lg:mt-[1000px] xl:mt-[700px] "
+          className="mt-[1250px]  sm:mt-[1000px] md:mt-[1800px] lg:mt-[1000px] xl:mt-[1200px] "
         >
           <Image src={"/s4-v1.png"} alt="parallax-1" fill objectFit="cover" />
         </ParallaxLayer>
         <ParallaxLayer
           offset={1.9}
           speed={2.3}
-          className="mt-[2900px]  sm:mt-[2800px] md:mt-[1800px] lg:mt-[1000px]  xl:mt-[700px] "
+          className="mt-[1300px]  sm:mt-[1100px] md:mt-[1800px] lg:mt-[1000px]  xl:mt-[1300px] "
         >
           <Image src={"/s4-v2.png"} alt="parallax-1" fill objectFit="cover" />
         </ParallaxLayer>
         <ParallaxLayer
           offset={1.9}
           speed={2}
-          className="mt-[2850px]  sm:mt-[2750px] md:mt-[1750px] lg:mt-[950px] xl:mt-[650px]"
+          className="mt-[1350px]  sm:mt-[1150px] md:mt-[1750px] lg:mt-[950px] xl:mt-[1250px]"
         >
           <Image src={"/s4-v3.png"} alt="parallax-1" fill objectFit="cover" />
         </ParallaxLayer>
         <ParallaxLayer
           offset={1.9}
           speed={1.5}
-          className="mt-[2550px]  sm:mt-[2650px] md:mt-[1750px] lg:mt-[1000px] xl:mt-[600px] flex flex-col gap-y-72 xl:flex-row px-10 ms:px-16 md:px-24 lg:px-36  gap-16"
+          className="mt-[1150px]  sm:mt-[1100px] md:mt-[1750px] lg:mt-[1000px] xl:mt-[1000px] flex flex-col gap-y-44 sm:gap-64 xl:flex-row px-10 ms:px-16 md:px-36 xl:px-36  gap-16"
         >
           <div className="xl:w-[30%] mt-10  flex flex-col justify-center gap-10 text-white">
             <div>
               <p>Project List</p>
             </div>
-            <div className="text-4xl text-white leading-relaxed font-semibold">
+            <div className="text-2xl sm:text-4xl text-white leading-relaxed font-semibold">
               <p>Meet my latest Project</p>
             </div>
             <div>
@@ -304,7 +308,7 @@ export default function Home() {
               </p>
             </div>
           </div>
-          <div className="lg:w-[70%] grid grid-cols-1 sm:grid-cols-2  gap-96 sm:gap-3 md:gap-16 xl:gap-2 items-center justify-end">
+          <div className="lg:w-[70%] xl:w-[80%] grid grid-cols-2  gap-3 md:gap-16 xl:gap-16 items-center justify-end">
             <CardHeaderProject
               goTo="https://github.com/IrwanFicoFar"
               imageResource="/github.png"
@@ -320,13 +324,13 @@ export default function Home() {
         <ParallaxLayer
           offset={2}
           speed={1.2}
-          className="flex justify-center mt-[2400px] sm:mt-[2000px] md:mt-[1200px] lg:mt-[600px] xl:mt-[150px]"
+          className="flex justify-center mt-[650px] sm:mt-[400px] md:mt-[1000px] lg:mt-[500px] xl:mt-[500px]"
           id="project"
         >
           <Link
             href={"https://github.com/IrwanFicoFar"}
             target="_blank"
-            className="relative rounded-3xl  text-3xl font-medium bg-btn-navbar flex gap-5 h-16 w-72 justify-center items-center border-white border-2 border-opacity-25 hover:scale-105 duration-500 ease-in-out"
+            className="relative rounded-3xl text-lg  sm:text-2xl md:text-3xl font-medium bg-btn-navbar flex gap-5 h-10 w-44 sm:h-16 sm:w-72 justify-center items-center border-white border-2 border-opacity-25 hover:scale-105 duration-500 ease-in-out"
           >
             <p>More project</p>
           </Link>
@@ -334,9 +338,9 @@ export default function Home() {
         <ParallaxLayer
           offset={2.4}
           speed={1.7}
-          className="px-10 md:px-16 lg:px-24 xl:gap-44 2xl:px-56  mt-[2900px] sm:mt-[2500px] md:mt-[1500px] lg:mt-[800px] xl:mt-[300px]"
+          className="px-10 md:px-16 lg:px-24 xl:gap-44 2xl:px-56 mt-[700px] sm:mt-[400px] md:mt-[1200px] lg:mt-[700px] xl:mt-[600px] 2xl:mt-[700px]"
         >
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-[600px] sm:gap-x-10 sm:gap-y-[600px] md:gap-5 lg:gap-10 xl:gap-16">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 gap-y-80 sm:gap-y-[550px] md:gap-16 md:gap-y-[550px] lg:gap-10 xl:gap-16">
             {ProjectHeadline.map((data) => (
               <CardProject
                 key={data.id}
@@ -350,43 +354,16 @@ export default function Home() {
                 }}
               />
             ))}
-            {/* <CardProject
-              goTo="https://www.youtube.com/channel/UC9uy_umt8ZsMjjj2N2vQYtA"
-              imageResource="/education.png"
-              description="Education Hub is a web platform used to facilitate prospective students in obtaining detailed
-              information about the schools they are interested in or finding the right school for them."
-              cover="/education.png"
-              title="Education-Hub"
-              onClick={toggleModal}
-            />
-            <CardProject
-              goTo="https://www.youtube.com/channel/UC9uy_umt8ZsMjjj2N2vQYtA"
-              imageResource="/event.png"
-              description="designed for creating and managing
-              events. Users can create their events directly on this platform. Additionally, can explore various other ossibilities events by accessing on the main page."
-              cover="/event.png"
-              title="Event Planner App"
-              onClick={toggleModal}
-            />
-            <CardProject
-              goTo="https://www.youtube.com/channel/UC9uy_umt8ZsMjjj2N2vQYtA"
-              imageResource="/pokemon.png"
-              description="Pokemon App is a platform that showcases a comprehensive list of Pokemon. Users can obtain
-              detailed information about each Pokemon by simply clicking on its respective image."
-              cover="/pokemon.png"
-              title="Catch Pokemon App"
-              onClick={toggleModal}
-            /> */}
           </div>
         </ParallaxLayer>
         <ParallaxLayer
           offset={2.9}
           speed={1.2}
-          className="mt-[3400px] sm:mt-[2600px] md:mt-[1300px] lg:mt-[800px] xl:mt-[300px]  px-10 sm:px-24 md:px-36"
+          className="mt-[700px] sm:mt-[800px] md:mt-[1300px] lg:mt-[800px] xl:mt-[700px]  px-10 sm:px-24 md:px-36 z-40"
         >
           <div className="text-xl sm:tex-3xl md:text-4xl text-white leading-relaxed font-semibold text-center">
             <p>What They Says</p>
-            <div className="flex justify-center">
+            <div className="hidden sm:flex justify-center">
               <p className="text-sm font-medium mt-5 lg:w-[700px] xl:w-96">
                 &quot;I am gathering reviews from those who collaborated with me
                 on the project, including input from friends, mentor, and client
@@ -398,7 +375,7 @@ export default function Home() {
         <ParallaxLayer
           offset={2.9}
           speed={1.8}
-          className="mt-[4700px] sm:mt-[3700px] md:mt-[2100px] lg:mt-[1500px] xl:mt-[900px] px-10 sm:px-16 md:px-24 lg:px-28 xl:px-32 2xl:px-36 z-20"
+          className="mt-[1100px] sm:mt-[1500px] md:mt-[2100px] lg:mt-[1500px] xl:mt-[1300px] 2xl:mt-[1400px] px-10 sm:px-16 md:px-24 lg:px-28 xl:px-32 2xl:px-36 z-20"
         >
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 sm:gap-12 md:gap-14 lg:gap-16 xl:gap-24">
             <CardReview
@@ -424,53 +401,53 @@ export default function Home() {
         <ParallaxLayer
           offset={2.9}
           speed={1.5}
-          className="mt-[4700px] sm:mt-[3700px] md:mt-[2200px] lg:mt-[1400px] xl:mt-[700px]  2xl:mt-[700px] flex justify-center z-10"
+          className="mt-[1400px] sm:mt-[1700px] md:mt-[2200px] lg:mt-[1400px] xl:mt-[1100px]  2xl:mt-[1200px] flex justify-center z-10"
         >
           <Image src={S5image1} alt="parallax-2" fill objectFit="cover" />
         </ParallaxLayer>
         <ParallaxLayer
           offset={2.9}
           speed={1.6}
-          className="mt-[5400px] sm:mt-[4300px] md:mt-[2700px] lg:mt-[1900px] xl:mt-[1200px] 2xl:mt-[1200px]  z-10"
+          className="mt-[1800px] sm:mt-[2300px] md:mt-[2700px] lg:mt-[2000px] xl:mt-[1500px] 2xl:mt-[1800px]  z-10"
         >
           <Image src={S5image2} alt="parallax-2" fill objectFit="cover" />
         </ParallaxLayer>
         <ParallaxLayer
           offset={2.9}
           speed={1.5}
-          className="mt-[5500px] sm:mt-[4300px] md:mt-[2800px] lg:mt-[2000px]  xl:mt-[1300px] 2xl:mt-[1400px] z-10"
+          className="mt-[1900px] sm:mt-[2300px] md:mt-[2800px] lg:mt-[2200px]  xl:mt-[1700px] 2xl:mt-[2000px] z-10"
         >
           <Image src={S5image3} alt="parallax-2" fill objectFit="cover" />
         </ParallaxLayer>
         <ParallaxLayer
           offset={2.9}
           speed={1.4}
-          className="mt-[5800px] sm:mt-[4600px] md:mt-[3000px] lg:mt-[2000px]  xl:mt-[1350px] 2xl:mt-[1400px] z-10"
+          className="mt-[2000px] sm:mt-[2700px] md:mt-[3300px] lg:mt-[2300px]  xl:mt-[2000px] 2xl:mt-[2300px] z-10"
         >
           <Image src={S5image4} alt="parallax-2" fill objectFit="cover" />
         </ParallaxLayer>
         <ParallaxLayer
           offset={2.9}
           speed={1.3}
-          className="mt-[5800px] sm:mt-[4500px] md:mt-[3000px] lg:mt-[2100px]  xl:mt-[1600px] 2xl:mt-[1600px] z-10"
+          className="mt-[2200px] sm:mt-[2900px] md:mt-[3400px] lg:mt-[2400px]  xl:mt-[2300px] 2xl:mt-[2600px] z-10"
         >
           <Image src={S5image5} alt="parallax-2" fill objectFit="cover" />
         </ParallaxLayer>
         <ParallaxLayer
           offset={2.9}
           speed={1.3}
-          className="mt-[4700px] sm:mt-[4000px] md:mt-[2500px] lg:mt-[1800px] xl:mt-[1200px] z-10"
+          className="mt-[1700px] sm:mt-[2200px] md:mt-[2500px] lg:mt-[1800px] xl:mt-[1500px] 2xl:mt-[1700px] z-10"
         >
-          <div className="text-2xl sm:text-3xl md:text-4xl text-white leading-relaxed font-semibold text-center">
+          <div className="text-xl sm:text-2xl md:text-4xl text-white leading-relaxed font-semibold text-center">
             <p>What can I do for You ?</p>
           </div>
         </ParallaxLayer>
         <ParallaxLayer
           offset={2.9}
           speed={1.1}
-          className="mt-[4400px] sm:mt-[3800px]  md:mt-[2400px] lg:mt-[1800px] xl:mt-[1200px] z-10"
+          className="mt-[1600px] sm:mt-[2100px]  md:mt-[2400px] lg:mt-[1800px] xl:mt-[1500px] 2xl:mt-[1700px] z-10"
         >
-          <div className="flex flex-col md:flex-row justify-center gap-10 md:gap-20 px-10 sm:px-26 md:px-24  mx-auto ">
+          <div className="flex flex-col lg:flex-row justify-center gap-10 md:gap-20 px-10 sm:px-26 md:px-24  mx-auto ">
             <CardService
               title="🌐 Frontend"
               description="I'll turn your cool designs into a beautiful and responsive
@@ -486,17 +463,17 @@ export default function Home() {
         <ParallaxLayer
           offset={2.9}
           speed={1}
-          className="mt-[5150px] sm:mt-[4300px]  md:mt-[2900px] lg:mt-[2200px] xl:mt-[1750px] 2xl:mt-[1500px]  flex justify-center z-10"
+          className="mt-[2050px] sm:mt-[2800px]  md:mt-[3100px] lg:mt-[2200px] xl:mt-[2100px] 2xl:mt-[2300px]  flex justify-center z-10"
         >
           <div className="w-[60%] sm:w-[70%] md:w-[50%] flex flex-col items-center gap-10 text-white">
-            <p className="text-2xl sm:text-3xl md:text-4xl  font-semibold text-center">
+            <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl  font-semibold text-center">
               Have a Project to Build ?
             </p>
             <p>let’s collaborate, I’ll help you my best</p>
             <Link
               href={"https://wa.me/083807106747"}
               target="_blank"
-              className="relative rounded-lg  text-3xl font-medium bg-btn-navbar flex gap-5 h-16 w-72 justify-center items-center border-white border-2 border-opacity-25 hover:scale-105 duration-500 ease-in-out"
+              className="relative rounded-lg text-xl sm:text-2xl md:text-3xl font-medium bg-btn-navbar flex gap-5 h-16 w-72 justify-center items-center border-white border-2 border-opacity-25 hover:scale-105 duration-500 ease-in-out"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -510,14 +487,14 @@ export default function Home() {
                   stroke="white"
                 />
               </svg>
-              <p className="text-2xl sm:text-3xl md:text-4xl">Contact me</p>
+              <p className="text-xl  sm:text-2xl md:text-3xl">Contact me</p>
             </Link>
           </div>
         </ParallaxLayer>
         <ParallaxLayer
           offset={3}
           speed={1.5}
-          className="mt-[5700px] sm:mt-[4000px]  md:mt-[2400px] lg:mt-[1400px] xl:mt-[900px] 2xl:mt-[900px] z-10"
+          className="mt-[1800px] sm:mt-[2500px]  md:mt-[2800px] lg:mt-[1900px] xl:mt-[1900px] 2xl:mt-[2100px] z-10"
         >
           <Image
             src={"/footer-vector.png"}
@@ -529,7 +506,7 @@ export default function Home() {
         <ParallaxLayer
           offset={3}
           speed={0.7}
-          className="mt-[4100px] sm:mt-[3100px] md:mt-[2000px]  lg:mt-[1300px] xl:mt-[900px] z-10"
+          className="mt-[1500px] sm:mt-[2100px] md:mt-[2300px]  lg:mt-[1600px] xl:mt-[1600px] 2xl:mt-[1800px] z-10"
         >
           <Footer
             discord="https://discord.com/channels/irwan_fico_far"
@@ -585,6 +562,15 @@ export default function Home() {
           <></>
         )
       )}
+      <Sidenavbar
+        isOpen={openSideNav}
+        closeSideNav={() => setOpenSideNav(false)}
+        onClickHome={() => parallax.current.scrollTo(0)}
+        onClickAbout={() => parallax.current.scrollTo(0.6)}
+        onClickTools={() => parallax.current.scrollTo(1.05)}
+        onClickProject={() => parallax.current.scrollTo(1.7)}
+        onClickContact={() => parallax.current.scrollTo(3)}
+      />
     </main>
   );
 }
