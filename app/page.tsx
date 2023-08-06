@@ -100,9 +100,7 @@ export default function Home() {
             handleOpen={() => setOpenSideNav(true)}
             onClickHome={() => parallax.current.scrollTo(0)}
             onClickAbout={() => parallax.current.scrollTo(0.7)}
-            onClickTools={() =>
-              parallax.current.scrollTo(screenWidth < 640 ? 1.5 : 1.3)
-            }
+            onClickTools={() => parallax.current.scrollTo(1.3)}
             onClickProject={() => parallax.current.scrollTo(1.9)}
             onClickContact={() => parallax.current.scrollTo(4)}
           />
