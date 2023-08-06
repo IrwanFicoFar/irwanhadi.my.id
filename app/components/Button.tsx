@@ -3,7 +3,6 @@ import React, { MouseEventHandler, useRef } from "react";
 import { Parallax, ParallaxLayer, IParallax } from "@react-spring/parallax";
 export const ButtonNav = ({
   label,
-
   addClass,
   onClick,
 }: // handleScrollToElement,
@@ -23,6 +22,25 @@ export const ButtonNav = ({
         {/* <a onClick={handleScrollToElement}> {label}</a> */}
         {label}
       </div>
+    </button>
+  );
+};
+
+export const ButtonPagination = ({
+  condition,
+  navigation,
+  label,
+}: {
+  condition: string;
+  navigation: MouseEventHandler<HTMLButtonElement>;
+  label: string;
+}) => {
+  return (
+    <button
+      className={`${condition} text-white capitalize bg-btn-navbar py-3 px-8 rounded-xl text-lg sm:text-2xl border-2 border-cyan-500 `}
+      onClick={navigation}
+    >
+      {label}
     </button>
   );
 };
