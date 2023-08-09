@@ -2,7 +2,7 @@
   {
     "id": 1,
     "title": "HTML",
-    "descriptions": "HyperText Maskup Language",
+    "descriptions": "HyperText Markup Language",
     "image": "https://firebasestorage.googleapis.com/v0/b/portfolio-4ea92.appspot.com/o/html.png?alt=media&token=b439b635-c71f-4a2b-a79b-dd724036d632"
   },
   {
@@ -26,7 +26,7 @@
   {
     "id": 5,
     "title": "NODE",
-    "descriptions": "Node Language",
+    "descriptions": "Node.js Runtime Environment",
     "image": "https://firebasestorage.googleapis.com/v0/b/portfolio-4ea92.appspot.com/o/node.png?alt=media&token=eee9bc86-c8e8-4cc7-acf5-b20959468354"
   },
   {
